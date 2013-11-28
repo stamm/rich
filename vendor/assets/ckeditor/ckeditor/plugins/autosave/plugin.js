@@ -75,7 +75,7 @@
     function GenerateAutoSaveDialog(editorInstance, autoSaveKey) {
         CKEDITOR.dialog.add('autosaveDialog', function () {
             return {
-                title: editorInstance.lang.autosave.title,
+                title: editorInstance.lang.title,
                 minHeight: 155,
                 height: 300,
                 width: 750,
@@ -98,8 +98,8 @@
                     elements: [{
                         type: 'radio',
                         id: 'diffType',
-                        label: editorInstance.lang.autosave.diffType,
-                        items: [[editorInstance.lang.autosave.sideBySide, 'sideBySide'], [editorInstance.lang.autosave.inline, 'inline']],
+                        label: editorInstance.lang.diffType,
+                        items: [[editorInstance.lang.sideBySide, 'sideBySide'], [editorInstance.lang.inline, 'inline']],
                         'default': 'sideBySide',
                         onClick: function () {
                             RenderDiff(this._.dialog, editorInstance, autoSaveKey);
@@ -114,7 +114,7 @@
                     {
                         id: 'ok',
                         type: 'button',
-                        label: editorInstance.lang.autosave.ok,
+                        label: editorInstance.lang.ok,
                         'class': 'cke_dialog_ui_button_ok',
                         onClick: function (evt) {
                             var dialog = evt.data.dialog;
@@ -161,7 +161,7 @@
                 return;
             }
 
-            var confirmMessage = editorInstance.lang.autosave.loadSavedContent.replace("{0}", moment(autoSavedContentDate).lang(editorInstance.config.language).format('LLL'));
+            var confirmMessage = editorInstance.lang.loadSavedContent.replace("{0}", moment(autoSavedContentDate).lang(editorInstance.config.language).format('LLL'));
             if (confirm(confirmMessage)) {
                 // Open DIFF Dialog
                 editorInstance.openDialog('autosaveDialog');
@@ -207,8 +207,8 @@
             baseTextLines: base,
             newTextLines: newtxt,
             opcodes: opcodes,
-            baseTextName: editorInstance.lang.autosave.loadedContent,
-            newTextName: editorInstance.lang.autosave.autoSavedContent + (moment(jsonSavedContent.saveTime).lang(editorInstance.config.language).format('LLL')) + '\')',
+            baseTextName: editorInstance.lang.loadedContent,
+            newTextName: editorInstance.lang.autoSavedContent + (moment(jsonSavedContent.saveTime).lang(editorInstance.config.language).format('LLL')) + '\')',
             contextSize: 3,
             viewType: dialog.getContentElement('general', 'diffType').getValue() == "inline" ? 1 : 0
         }).outerHTML + '</div>');
